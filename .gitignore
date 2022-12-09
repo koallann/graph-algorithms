@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/c,c++,windows,linux,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,windows,linux,macos
+# Created by https://www.toptal.com/developers/gitignore/api/c,c++,windows,linux,macos,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,windows,linux,macos,visualstudiocode
 
 ### C ###
 # Prerequisites
@@ -122,6 +122,25 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -148,4 +167,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/c,c++,windows,linux,macos
+# End of https://www.toptal.com/developers/gitignore/api/c,c++,windows,linux,macos,visualstudiocode
