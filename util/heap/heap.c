@@ -8,11 +8,6 @@ struct _heap {
     distance_t **data;
 };
 
-struct _distance {
-    int to_vertex;
-    int value;
-};
-
 /* private functions */
 
 int get_parent_index(int i);

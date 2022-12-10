@@ -2,7 +2,11 @@
 #define HEAP_H
 
 typedef struct _heap heap_t;
-typedef struct _distance distance_t;
+
+typedef struct _distance {
+    int to_vertex;
+    int value;
+} distance_t;
 
 distance_t* distance_create(int to_vertex, int value);
 
