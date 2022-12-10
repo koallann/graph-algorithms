@@ -42,19 +42,19 @@ int* dijkistra(int n, int graph[n][n], int source) {
         distance_t *d = heap_dequeue(queue);
         
         int vertex = d->to_vertex;
-        int curr_distance = d->value;
+        int distance = d->value;
 
         if (visited[vertex]) continue;
         visited[vertex] = 1;
 
         for (int i=0; i<n; i++) {
-            int neighbor_weight = graph[vertex][i];
-            if (neighbor_weight == WEIGHT_NOT_CONNECTED) continue;
+            int weight = graph[vertex][i];
+            if (weight == WEIGHT_NOT_CONNECTED) continue;
 
-            int distance_to_neighbor = curr_distance + neighbor_weight;
-            if (distance_to_neighbor < distances[i]) {
-                distances[i] = distance_to_neighbor;
-                heap_enqueue(queue, distance_create(i, distance_to_neighbor));
+            int partial_distance = distance + weight;
+            if (partial_distance < distances[i]) {
+                distances[i] = partial_distance;
+                heap_enqueue(queue, distance_create(i, partial_distance));
             }
         }
     }
@@ -64,13 +64,13 @@ int* dijkistra(int n, int graph[n][n], int source) {
 
 int main(int argc, char const *argv[])
 {
-    int numberOfVertices, numberOfEdges;
-    scanf("%d %d", &numberOfVertices, &numberOfEdges);
+    int V, E;
+    scanf("%d %d", &V, &E);
 
-    int graph[numberOfVertices][numberOfVertices];
-    initialize_graph(numberOfVertices, graph);
+    int graph[V][V];
+    initialize_graph(V, graph);
 
-    for (int i=0; i<numberOfEdges; i++) {
+    for (int i=0; i<E; i++) {
         int from, to, weight;
         scanf("%d %d %d", &from, &to, &weight);
 
@@ -78,10 +78,10 @@ int main(int argc, char const *argv[])
         graph[to][from] = weight;
     }
 
-    int *distances_result = dijkistra(numberOfVertices, graph, 0);
+    int *result = dijkistra(V, graph, 0);
 
     printf("Distances:");
-    for (int i=0; i<numberOfVertices; i++) printf(" %d", distances_result[i]);
+    for (int i=0; i<V; i++) printf(" %d", result[i]);
     printf("\n");
 
     return 0;
