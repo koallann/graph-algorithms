@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "../util/heap/heap.h"
+#include "./heap/heap.h"
 
 #define WEIGHT_NOT_CONNECTED -1
 #define WEIGHT_INFINITY INT_MAX
