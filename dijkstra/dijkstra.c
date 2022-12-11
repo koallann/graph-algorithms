@@ -26,7 +26,7 @@ void initialize_distances(int n, int distances[n]) {
     }
 }
 
-int* dijkistra(int n, int graph[n][n], int source) {
+int* dijkistra(int n, int graph[n][n], int src) {
     int visited[n];
     initialize_visited(n, visited);
 
@@ -35,26 +35,25 @@ int* dijkistra(int n, int graph[n][n], int source) {
 
     heap_t *queue = heap_create(n);
 
-    distances[source] = 0;
-    heap_enqueue(queue, distance_create(source, 0));
+    distances[src] = 0;
+    heap_enqueue(queue, distance_create(src, 0));
 
     while (!heap_is_empty(queue)) {
         distance_t *d = heap_dequeue(queue);
         
-        int vertex = d->to_vertex;
+        int u = d->to_vertex;
         int distance = d->value;
 
-        if (visited[vertex]) continue;
-        visited[vertex] = 1;
+        if (visited[u]) continue;
+        visited[u] = 1;
 
         for (int i=0; i<n; i++) {
-            int weight = graph[vertex][i];
-            if (weight == WEIGHT_NOT_CONNECTED) continue;
+            int w = graph[u][i];
+            if (w == WEIGHT_NOT_CONNECTED) continue;
 
-            int partial_distance = distance + weight;
-            if (partial_distance < distances[i]) {
-                distances[i] = partial_distance;
-                heap_enqueue(queue, distance_create(i, partial_distance));
+            if (distance + w < distances[i]) {
+                distances[i] = distance + w;
+                heap_enqueue(queue, distance_create(i, distances[i]));
             }
         }
     }
@@ -71,11 +70,11 @@ int main(int argc, char const *argv[])
     initialize_graph(V, graph);
 
     for (int i=0; i<E; i++) {
-        int from, to, weight;
-        scanf("%d %d %d", &from, &to, &weight);
+        int u, v, w;
+        scanf("%d %d %d", &u, &v, &w);
 
-        graph[--from][--to] = weight;
-        graph[to][from] = weight;
+        graph[--u][--v] = w;
+        graph[v][u] = w;
     }
 
     int *result = dijkistra(V, graph, 0);

@@ -35,11 +35,11 @@ int main(int argc, char const *argv[]) {
     initialize_graph(V, graph);
 
     for (int i=0; i<E; i++) {
-        int from, to, weight;
-        scanf("%d %d %d", &from, &to, &weight);
+        int u, v, w;
+        scanf("%d %d %d", &u, &v, &w);
 
-        graph[--from][--to] = weight;
-        graph[to][from] = weight;
+        graph[--u][--v] = w;
+        graph[v][u] = w;
     }
 
     floyd_warshall(V, graph);

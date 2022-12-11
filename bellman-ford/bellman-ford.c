@@ -5,9 +5,9 @@
 #define WEIGHT_INFINITY INT_MAX
 
 typedef struct edge {
-    int from;
-    int to;
-    int weight;
+    int u;
+    int v;
+    int w;
 } edge_t;
 
 typedef struct graph {
@@ -33,23 +33,23 @@ void initialize_distances(int n, int *distances) {
     }
 }
 
-int* bellman_ford(graph_t *graph, int source) {
+int* bellman_ford(graph_t *graph, int src) {
     int V = graph->V;
     int E = graph->E;
 
     int *distances = (int*) malloc(sizeof(int) * V);
     initialize_distances(V, distances);
 
-    distances[source] = 0;
+    distances[src] = 0;
 
     for (int i=0; i<V-1; i++) {
         for (int j=0; j<E; j++) {
-            int from = graph->edges[j].from;
-            int to = graph->edges[j].to;
-            int weight = graph->edges[j].weight;
+            int u = graph->edges[j].u;
+            int v = graph->edges[j].v;
+            int w = graph->edges[j].w;
 
-            if (distances[from] + weight < distances[to]) {
-                distances[to] = distances[from] + weight;
+            if (distances[u] + w < distances[v]) {
+                distances[v] = distances[u] + w;
             }
         }
     }
@@ -64,12 +64,12 @@ int main(int argc, char const *argv[]) {
     graph_t *graph = create_graph(V, E);
 
     for (int i=0; i<E; i++) {
-        int from, to, weight;
-        scanf("%d %d %d", &from, &to, &weight);
+        int u, v, w;
+        scanf("%d %d %d", &u, &v, &w);
 
-        graph->edges[i].from = --from;
-        graph->edges[i].to = --to;
-        graph->edges[i].weight = weight;
+        graph->edges[i].u = --u;
+        graph->edges[i].v = --v;
+        graph->edges[i].w = w;
     }
 
     int *result = bellman_ford(graph, 0);
