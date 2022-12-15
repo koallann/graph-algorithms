@@ -27,8 +27,8 @@ graph_t* create_graph(int V, int E) {
     return graph;
 }
 
-void initialize_distances(int n, int *distances) {
-    for (int i=0; i<n; i++) {
+void initialize_distances(int V, int *distances) {
+    for (int i=0; i<V; i++) {
         distances[i] = WEIGHT_INFINITY;
     }
 }
