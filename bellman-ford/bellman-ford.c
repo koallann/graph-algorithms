@@ -65,7 +65,7 @@ int main(int argc, char const *argv[]) {
     int V, E;
     scanf("%d %d", &V, &E);
 
-    graph_t *graph = create_graph(V, E);
+    graph_t *graph = create_graph(V, E*2); // duplicate edges to undirected graph
 
     for (int i=0; i<E; i++) {
         int u, v, w;
@@ -74,6 +74,10 @@ int main(int argc, char const *argv[]) {
         graph->edges[i].u = --u;
         graph->edges[i].v = --v;
         graph->edges[i].w = w;
+
+        graph->edges[i+E].u = v;
+        graph->edges[i+E].v = u;
+        graph->edges[i+E].w = w;
     }
 
     bellman_ford(graph, 0);
