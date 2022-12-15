@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "../dijkstra/heap/heap.h"
+#include "../util/heap/heap.h"
 
 #define WEIGHT_INFINITY INT_MAX
 
