@@ -44,9 +44,12 @@ int main(int argc, char const *argv[]) {
 
     floyd_warshall(V, graph);
 
+    printf("distance matrix:\n");
+
     for (int i=0; i<V; i++) {
+        printf("%d -", i+1);
         for (int j=0; j<V; j++) {
-            if (graph[i][j] == WEIGHT_INFINITY) printf(" I");
+            if (graph[i][j] / 10 == 0) printf(" 0%d", graph[i][j]);
             else printf(" %d", graph[i][j]);
         }
         printf("\n");

@@ -37,7 +37,7 @@ int* bellman_ford(graph_t *graph, int src) {
     int V = graph->V;
     int E = graph->E;
 
-    int *distances = (int*) malloc(sizeof(int) * V);
+    int distances[V];
     initialize_distances(V, distances);
 
     distances[src] = 0;
@@ -54,7 +54,11 @@ int* bellman_ford(graph_t *graph, int src) {
         }
     }
 
-    return distances;
+    printf("(to:distance) -");
+    for (int i=0; i<V; i++) {
+        printf(" (%d:%d)", i+1, distances[i]);
+    }
+    printf("\n");
 }
 
 int main(int argc, char const *argv[]) {
@@ -72,11 +76,7 @@ int main(int argc, char const *argv[]) {
         graph->edges[i].w = w;
     }
 
-    int *result = bellman_ford(graph, 0);
-
-    printf("Distances:");
-    for (int i=0; i<V; i++) printf(" %d", result[i]);
-    printf("\n");
+    bellman_ford(graph, 0);
 
     return 0;
 }

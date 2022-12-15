@@ -26,11 +26,11 @@ void initialize_distances(int V, int distances[V]) {
     }
 }
 
-int* dijkistra(int V, int graph[V][V], int src) {
+void dijkistra(int V, int graph[V][V], int src) {
     int visited[V];
     initialize_visited(V, visited);
 
-    int* distances = (int*) malloc(sizeof(int)*V);
+    int distances[V];
     initialize_distances(V, distances);
 
     heap_t *queue = heap_create(V);
@@ -58,7 +58,11 @@ int* dijkistra(int V, int graph[V][V], int src) {
         }
     }
 
-    return distances;
+    printf("(to:distance) -");
+    for (int i=0; i<V; i++) {
+        printf(" (%d:%d)", i+1, distances[i]);
+    }
+    printf("\n");
 }
 
 int main(int argc, char const *argv[])
@@ -77,11 +81,7 @@ int main(int argc, char const *argv[])
         graph[v][u] = w;
     }
 
-    int *result = dijkistra(V, graph, 0);
-
-    printf("Distances:");
-    for (int i=0; i<V; i++) printf(" %d", result[i]);
-    printf("\n");
+    dijkistra(V, graph, 0);
 
     return 0;
 }

@@ -64,9 +64,10 @@ void prim(int V, int graph[V][V], int src) {
         }
     }
     
-    printf("(from:weight) -"); for (int i=0; i<V; i++) {
+    printf("(from:weight) -");
+    for (int i=0; i<V; i++) {
         if (i == src) printf(" (NULL:0)");
-        else printf(" (%d:%d)", parents[i] + 1, distances[i]);
+        else printf(" (%d:%d)", parents[i]+1, distances[i]);
     }
     printf("\n");
 }
